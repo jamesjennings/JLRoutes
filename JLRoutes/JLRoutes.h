@@ -40,6 +40,9 @@ static NSString *const kJLRoutesGlobalNamespaceKey = @"JLRoutesGlobalNamespace";
 + (void)addRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary *parameters))handlerBlock;
 - (void)addRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary *parameters))handlerBlock; // instance method
 
++ (void) removeRoute:(NSString*)routePattern;
+- (void) removeRoute:(NSString*)routePattern;
+
 /// Routes a URL, calling handler blocks (for patterns that match URL) until one returns YES.
 + (BOOL)routeURL:(NSURL *)URL;
 

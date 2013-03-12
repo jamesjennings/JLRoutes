@@ -191,8 +191,18 @@ static BOOL verboseLoggingEnabled = NO;
 		}
 	}
 }
++ (void) removeRoute:(NSString*)routePattern {
+    [[self globalRoutes] removeRoute:routePattern];
+}
 
-
+- (void) removeRoute:(NSString*)routePattern {
+    NSIndexSet *oldIndices = [self.routes indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        _JLRoute *route = obj;
+        return [route.pattern isEqualToString:routePattern];
+    }];
+    
+    [self.routes removeObjectsAtIndexes:oldIndices];
+}
 + (BOOL)routeURL:(NSURL *)URL {
 	if (!URL) {
 		return NO;
